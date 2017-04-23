@@ -1,0 +1,2 @@
+class ProjectRequirement < ApplicationRecord
+end
