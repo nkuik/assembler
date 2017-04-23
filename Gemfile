@@ -15,6 +15,8 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
+gem 'haml'
+gem 'haml-rails'
 
 # photo upload
 gem 'cloudinary'
@@ -28,6 +30,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
   gem 'pry-byebug'
   gem 'pry-rails'

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :characteristics
+  resources :matches
+  resources :member_project_associations
+  resources :member_skills
+  resources :projects
+  resources :project_requirements
+  resources :team_members
 end
