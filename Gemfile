@@ -16,11 +16,17 @@ gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'autoprefixer-rails'
 
+# photo upload
+gem 'cloudinary'
+gem 'carrierwave', '~> 0.11.2'
+
+gem 'rails-erd'
+
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_girl_rails'
   gem 'database_cleaner'
 
   gem 'pry-byebug'

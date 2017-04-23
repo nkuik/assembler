@@ -1,2 +1,0 @@
-class FocusArea < ApplicationRecord
-end
