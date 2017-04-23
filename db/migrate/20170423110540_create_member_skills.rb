@@ -5,7 +5,9 @@ class CreateMemberSkills < ActiveRecord::Migration[5.0]
       t.integer :years_experience
       t.string :education_type
       t.text :skills, array: true, default: []
+      t.text :skill_categories, array: true, default: []
       t.text :techs, array: true, default: []
+      t.text :tech_categoires, array: true, default: []
       t.text :characteristics, array: true, default: []
 
       t.timestamps
