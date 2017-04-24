@@ -18,6 +18,7 @@ gem 'autoprefixer-rails'
 gem 'haml'
 gem 'haml-rails'
 gem 'faker'
+gem 'ffaker'
 
 # photo upload
 gem 'cloudinary'

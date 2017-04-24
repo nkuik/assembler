@@ -2,7 +2,7 @@ class ProjectRequirement < ApplicationRecord
   belongs_to :project
 
   class << self
-    def possible_types
+    def possible_varieties
       ["mvp",
        "second version",
        "overhaul",
@@ -26,7 +26,8 @@ class ProjectRequirement < ApplicationRecord
 
     def possible_client_types
       ["enterprise",
-       "creative agency"
+       "creative agency",
+       "small business"
       ]
     end
   end
