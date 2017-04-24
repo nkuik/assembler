@@ -17,6 +17,7 @@ gem 'simple_form'
 gem 'autoprefixer-rails'
 gem 'haml'
 gem 'haml-rails'
+gem 'faker'
 
 # photo upload
 gem 'cloudinary'

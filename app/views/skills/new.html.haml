@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-sm-6.col-sm-offset-3
+      %h1 Add Skill Profile
+      .fieldset
+        = simple_form_for [@team_member, @skill] do |f|
+          = f.input :years_experience, label: "Years of Signifly Experience"
+          = f.input :education, label: "Degree or Education"
+          = f.input :education_type, label: "Education Type", collection: @team_member.possible_education_types
+          = f.input :skill_category, label: "Skill Category (select one)",
+          collection: @team_member.possible_skill_categories.map(&:capitalize)
+          = f.input :skills, label: "Specific Skills (select all applicable)",
+          collection: @team_member.possible_skills.map(&:capitalize), input_html: { multiple: true }
+          = f.input :tech_categories, label: "Software Categories (select all applicable)",
+          collection: @team_member.possible_tech_categories.map(&:capitalize), input_html: { multiple: true }
+          = f.input :techs, label: "Specific Software (select all applicable)",
+          collection: @team_member.possible_techs.map(&:capitalize), input_html: { multiple: true }
+          = f.input :characteristics, label: "Characteristics (select all applicable)",
+          collection: @characteristics.options.map(&:capitalize), input_html: { multiple: true }
+          = f.button :submit
+          = link_to 'Cancel', :back

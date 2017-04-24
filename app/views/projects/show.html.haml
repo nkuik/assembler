@@ -1,1 +1,38 @@
-%h1= @project.name
+.container
+  %h1= @project.name
+  %h3= @project.client
+  %h3= @project.deadline
+
+  -# No team members added or matches created
+  - if @project.member_project_associations.empty? and @project.matches.empty?
+    %p= link_to "Get Matches", new_project_match_path(@project)
+
+  - elsif @project.member_project_associations.empty? and @project.matches.any?
+    %h4 Here are your matches:
+    - @project.matches.each do |match|
+      %h5= match.team_member.name
+    %h4 Here are team members you can add
+
+  - elsif @project.member_project_associations.any?
+    .container
+    %h4 Here's the team so far
+      .row
+        .col-sm-6.col-sm-offset-3
+        %h4 Project Manager
+        - if @project.member_project_associations.managers.any?
+          = cl_image_tag @project.member_project_associations.managers.first.team_member.photo,
+          height: 50, width: 50, crop: :fill
+          %h5= @project.member_project_associations.managers.first.team_member.name
+          %h6= @project.member_project_associations.managers.first.team_member.position
+        - else
+          %h5 No project manager selected yet
+          %h6 Select one below
+      .row
+        .col-sm-3
+          %h4 Web Development
+            - if @member_associations.
+        .col-sm-3
+          %h4 Design or Creative Development
+        .col-sm-3
+          %h4 Business Development
+      %h4 Here are team members you can add

@@ -1,34 +1,13 @@
 .container
-  %h1 Add a team member
   .row
-    .col-sm-6
+    .col-sm-6.col-sm-offset-3
+      %h1 Add a team member
       .fieldset
-        = simple_form_for @member, :validation => true do |f|
+        = simple_form_for @member do |f|
           = f.input :name
           = f.input :position
-
-          = f.simple_fields_for :member_skills do |skills_form|
-
-            = skills_form.input :years_experience
-            = skills_form.input :education_type, collection: @member.possible_education_types
-
-            = skills_form.input :skill_categories, label: "Skill Categories (select as many as appropriate)",
-            collection: @member.possible_skill_categories, input_html: { multiple: true }
-
-            = skills_form.input :skills, label: "Specific Skills (select as many as appropriate)",
-            collection: @member.possible_skills, input_html: { multiple: true }
-
-            = skills_form.input :tech_categories, label: "Software Skill Categories (select as many as appropriate)",
-            collection: @member.possible_tech_categories, input_html: { multiple: true }
-
-            = skills_form.input :techs, label: "Specific Software Skills (select as many as appropriate)",
-            collection: @member.possible_techs, input_html: { multiple: true }
-
-            = skills_form.input :characteristics, label: "Personal Characteristics (select as many as appropriate)",
-            collection: @characteristics.options, input_html: { multiple: true }
-
-            = f.input :photo
-            = f.input :photo_cache, as: :hidden
+          = f.input :photo
+          = f.input :photo_cache, as: :hidden
 
           %p
             = f.button :submit

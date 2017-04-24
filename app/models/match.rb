@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-  belongs_to :team_member
+  belongs_to :team_member, inverse_of: :match
   belongs_to :project
 
   def calculate_match_score

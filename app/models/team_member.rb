@@ -1,11 +1,14 @@
 class TeamMember < ApplicationRecord
-  has_one :member_skill
+  has_one :skill
   has_many :matches
   # belongs_to :project_team
 
   mount_uploader :photo, PhotoUploader
 
-  accepts_nested_attributes_for :member_skill
+  scope :developers, -> { joins(:skill).where(skills: { skill_category: "web development" }) }
+  scope :designers, -> { joins(:skill).where(skills: { skill_category: "design" }) }
+  scope :creatives, -> { joins(:skill).where(skills: { skill_category: "creative development" }) }
+  scope :businessers, -> { joins(:skill).where(skills: { skill_category: "business development" }) }
 
   def possible_skills
     ["backend development",
@@ -22,9 +25,11 @@ class TeamMember < ApplicationRecord
   end
 
   def possible_skill_categories
-    ["web dev",
-     "business dev",
-     "creative dev",
+    ["design",
+     "web development",
+     "business development",
+     "creative development",
+     "not applicable"
     ]
   end
 
@@ -36,14 +41,16 @@ class TeamMember < ApplicationRecord
      "illustrator",
      "sketch",
      "invision",
-     "affinity photo"
+     "affinity photo",
+     "not applicable"
     ]
   end
 
   def possible_tech_categories
     ["web",
      "photo",
-     "video"
+     "video",
+     "not applicable"
     ]
   end
 

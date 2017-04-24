@@ -41,20 +41,6 @@ ActiveRecord::Schema.define(version: 20170423122615) do
     t.index ["team_member_id"], name: "index_member_project_associations_on_team_member_id", using: :btree
   end
 
-  create_table "member_skills", force: :cascade do |t|
-    t.integer  "team_member_id"
-    t.integer  "years_experience"
-    t.string   "education_type"
-    t.text     "skills",           default: [],              array: true
-    t.text     "skill_categories", default: [],              array: true
-    t.text     "techs",            default: [],              array: true
-    t.text     "tech_categoires",  default: [],              array: true
-    t.text     "characteristics",  default: [],              array: true
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.index ["team_member_id"], name: "index_member_skills_on_team_member_id", using: :btree
-  end
-
   create_table "project_requirements", force: :cascade do |t|
     t.integer  "project_id"
     t.string   "size"
@@ -83,12 +69,27 @@ ActiveRecord::Schema.define(version: 20170423122615) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.integer  "team_member_id"
+    t.integer  "years_experience"
+    t.string   "education"
+    t.string   "education_type"
+    t.text     "skills",           default: [],              array: true
+    t.text     "skill_categories", default: [],              array: true
+    t.text     "techs",            default: [],              array: true
+    t.text     "tech_categories",  default: [],              array: true
+    t.text     "characteristics",  default: [],              array: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["team_member_id"], name: "index_skills_on_team_member_id", using: :btree
+  end
+
   create_table "team_members", force: :cascade do |t|
     t.string   "name"
     t.string   "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "photo"
+    t.datetime "created_at",                                                                          null: false
+    t.datetime "updated_at",                                                                          null: false
+    t.string   "photo",      default: "https://robohash.org/nullaetbeatae.png?size=300x300&set=set1"
   end
 
 end

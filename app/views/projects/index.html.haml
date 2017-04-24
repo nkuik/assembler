@@ -1,5 +1,5 @@
 %h1 Projects
 
 - @projects.each do |p|
-  %div Here's the link: = link_to "#{p.name}", project_path(p)
-  %div= p.deadline
+  %h4=  link_to p.name, project_path(p)
+  %div= "Deadline: #{p.deadline}"

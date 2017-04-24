@@ -3,7 +3,6 @@ class TeamMembersController < ApplicationController
 
   def new
     @member = TeamMember.new
-    @characteristics = Characteristic.new
   end
 
   def create
@@ -18,20 +17,14 @@ class TeamMembersController < ApplicationController
   private
 
   def set_member
-    @member = TeamMember.includes(:member_skill).find(params[:id])
+    @member = TeamMember.includes(:skill).find(params[:id])
   end
 
   def member_params
     params.require(:team_member).permit(:name,
                                         :position,
                                         :photo,
-                                        :photo_cache,
-                                        member_skill: [ :skills => [],
-                                                        :skill_categories => [],
-                                                        :techs => [],
-                                                        :tech_categories => [],
-                                                        :characteristics => []
-                                                      ]
+                                        :photo_cache
                                        )
   end
 end

@@ -6,7 +6,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project_team
+    @team_members = TeamMember.all
+    @member_associations = MemberProjectAssociation.where(project_id: @project.id) 
   end
 
   private
