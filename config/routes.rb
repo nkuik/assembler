@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   resources :member_project_associations
   resources :projects do
-    resources :matches
+    post '/create_matches',
+      controller: 'matches',
+      to: 'matches#create_matches'
   end
   resources :project_requirements
   resources :team_members do

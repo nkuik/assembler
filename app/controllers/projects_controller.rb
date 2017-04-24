@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show]
+  before_action :set_matches, only: [:show]
 
   def index
     @projects = Project.all
@@ -7,7 +8,7 @@ class ProjectsController < ApplicationController
 
   def show
     @team_members = TeamMember.all
-    @member_associations = MemberProjectAssociation.where(project_id: @project.id) 
+    @member_associations = MemberProjectAssociation.where(project_id: @project.id)
   end
 
   private
@@ -23,5 +24,10 @@ class ProjectsController < ApplicationController
     @project = Project.includes(:matches,
                                 :member_project_associations).find(params[:id])
   end
+
+  def set_matches
+    @matches = Match.where(project_id: @project.id).order(:score)
+  end
+
 
 end

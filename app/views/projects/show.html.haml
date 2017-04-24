@@ -5,11 +5,11 @@
 
   -# No team members added or matches created
   - if @project.member_project_associations.empty? and @project.matches.empty?
-    %p= link_to "Get Matches", new_project_match_path(@project)
+    %p= link_to "Get Matches", project_create_matches_url(@project), method: :post
 
   - elsif @project.member_project_associations.empty? and @project.matches.any?
     %h4 Here are your matches:
-    - @project.matches.each do |match|
+    - @matches.each do |match|
       %h5= match.team_member.name
     %h4 Here are team members you can add
 
