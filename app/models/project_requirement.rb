@@ -32,8 +32,15 @@ class ProjectRequirement < ApplicationRecord
     end
   end
 
-  def role_needs
-    # return whatever of the three roles that
+  def essential_role_needs
+    if project.member_project_associations.empty?
+      ["design", "web development"]
+    else
+      needs = []
+      needs << "web development" if project.member_project_associations.team_members.developers.empty?
+      needs << "design" if project.member_project_associations.team_members.designers.empty?
+      needs
+    end
   end
 
 end
