@@ -33,7 +33,6 @@ class ProjectsController < ApplicationController
     @designer_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'design' }
     @business_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'business development' }
     @developer_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'web development' }
-    raise
   end
 
 end
