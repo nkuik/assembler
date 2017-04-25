@@ -14,7 +14,7 @@
     %p= link_to "Get Matches", project_create_matches_url(@project), method: :post
 
   - elsif @project.member_project_associations.empty? and @project.matches.any?
-    -# %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
+    %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
     %h4 Here are your matches:
     - @matches.each do |match|
       %h5= match.team_member.name
@@ -27,7 +27,7 @@
 
   - elsif @project.member_project_associations.any?
     .container
-    -# %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
+    %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
     %h3 Here's the team so far:
     .row
       .col-sm-4.col-sm-offset-4
@@ -62,7 +62,7 @@
           - if @developer_matches.any?
             - @developer_matches.each do |match|
               %h5= match.team_member.name
-              %h6= dev.team_member.position
+              %h6= match.team_member.position
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
@@ -101,7 +101,7 @@
           - if @designer_matches.any?
             - @designer_matches.each do |match|
               %h5= match.team_member.name
-              %h6= des.team_member.position
+              %h6= match.team_member.position
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
@@ -116,6 +116,7 @@
           - if @designer_matches.any?
             - @designer_matches.each do |match|
               %h5= match.team_member.name
+              %h5= match.team_member.skill.skill_category
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
@@ -141,6 +142,7 @@
           - if @business_matches.any?
             - @business_matches.each do |match|
               %h5= match.team_member.name
+              %h5= match.team_member.skill.skill_category
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
@@ -154,6 +156,7 @@
           - if @business_matches.any?
             - @business_matches.each do |match|
               %h5= match.team_member.name
+              %h5= match.team_member.skill.skill_category
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",

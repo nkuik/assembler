@@ -8,14 +8,14 @@
           = f.input :education, label: "Degree or Education"
           = f.input :education_type, label: "Education Type", collection: @team_member.possible_education_types
           = f.input :skill_category, label: "Skill Category (select one)",
-          collection: @team_member.possible_skill_categories.map(&:capitalize)
+          collection: @team_member.possible_skill_categories
           = f.input :skills, label: "Specific Skills (select all applicable)",
-          collection: @team_member.possible_skills.map(&:capitalize), input_html: { multiple: true }
+          collection: @team_member.possible_skills, input_html: { multiple: true }
           = f.input :tech_categories, label: "Software Categories (select all applicable)",
-          collection: @team_member.possible_tech_categories.map(&:capitalize), input_html: { multiple: true }
+          collection: @team_member.possible_tech_categories, input_html: { multiple: true }
           = f.input :techs, label: "Specific Software (select all applicable)",
-          collection: @team_member.possible_techs.map(&:capitalize), input_html: { multiple: true }
+          collection: @team_member.possible_techs, input_html: { multiple: true }
           = f.input :characteristics, label: "Characteristics (select all applicable)",
-          collection: @characteristics.options.map(&:capitalize), input_html: { multiple: true }
+          collection: @characteristics.options, input_html: { multiple: true }
           = f.button :submit
           = link_to 'Cancel', :back

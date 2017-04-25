@@ -2,7 +2,7 @@ class CreateSkills < ActiveRecord::Migration[5.0]
   def change
     create_table :skills do |t|
       t.references :team_member
-      t.integer :years_experience
+      t.integer :years_experience, default: 0
       t.string :education
       t.string :education_type
       t.string :skill_category

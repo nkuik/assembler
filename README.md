@@ -1,7 +1,12 @@
 # Assembler
 
+## Assignment Requirements
+* ERD file is found at `erd.pdf` in the repo
+* Questions and thoughts I had can be found in `docs/questions_assumptions.md`
+* Note: The file upload won't work locally due to users not having the correct env variables. The upload will need to be viewed on the production instance.
+
 ## Tech
-Assembler is a Rails 5 app, using a PostgreSQL database and basic CSS styling
+Assembler is a Rails 5 app, using a PostgreSQL database and (very) basic CSS styling.
 
 ## Purpose
 The main purpose of this app is to assign team members with different skill sets
@@ -10,15 +15,15 @@ in that it calculates a match score for each team member for each project and ra
 them according to project specifications and staff qualifications.
 
 ## Installation
-#### Prerequisites
+### Prerequisites
 * Homebrew
 * Git
 * Ruby 2.3.1
 * Postgres
 * Bundler
 
-#### Local Installation Instructions
-##### Mac
+### Local Installation Instructions
+#### Mac
 Make sure you have homebrew installed. If not, go [here](https://brew.sh/), then come back.
 
 If you don't have git, install that: `brew install git`

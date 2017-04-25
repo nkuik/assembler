@@ -50,7 +50,7 @@ class MatchesController < ApplicationController
     account_project_status(member, match)
     account_experience(member, match)
     account_education(member, match)
-    match.update
+    match.save
   end
 
   def account_project_needs(member, match)

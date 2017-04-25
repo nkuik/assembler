@@ -37,8 +37,8 @@ class ProjectRequirement < ApplicationRecord
       ["design", "web development"]
     else
       needs = []
-      needs << "web development" if project.member_project_associations.team_members.developers.empty?
-      needs << "design" if project.member_project_associations.team_members.designers.empty?
+      needs << "web development" if project.member_project_associations.map {|assoc| assoc.team_member.skill.skill_category == 'web development'}.empty?
+      needs << "design" if project.member_project_associations.map {|assoc| assoc.team_member.skill.skill_category == 'design'}.empty?
       needs
     end
   end

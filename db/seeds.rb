@@ -22,7 +22,7 @@ def choose_skill(title)
 end
 
 
-25.times do
+30.times do
 
   member = TeamMember.create!({name: Faker::Name.name,
                                position: ["Dev", "Designer", "Creative", "Business Person" ].sample,
@@ -39,7 +39,7 @@ end
               })
 end
 
-20.times do
+50.times do
   project = Project.create!({name: FFaker::Product.product,
                              client: FFaker::Company.name,
                              deadline: Date.today + rand(300)})
