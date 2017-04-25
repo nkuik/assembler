@@ -5,7 +5,7 @@ class CreateSkills < ActiveRecord::Migration[5.0]
       t.integer :years_experience, default: 0
       t.string :education
       t.string :education_type
-      t.string :skill_category
+      t.string :skill_category, default: 'not applicable'
       t.text :skills, array: true, default: []
       t.text :techs, array: true, default: []
       t.text :tech_categories, array: true, default: []

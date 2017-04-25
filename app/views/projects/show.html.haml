@@ -51,7 +51,7 @@
         - if @developers.any?
           - @developers.each do |dev|
             - if dev.team_member.photo.present?
-              = cl_image_tag @project.member_project_associations.managers.first.team_member.photo,
+              = cl_image_tag dev.team_member.photo,
               height: 50, width: 50, crop: :fill, default_image: 'avatar.png'
             - else
               = image_tag 'avatar.png', style: 'width:50px; height:50px;'
@@ -90,7 +90,7 @@
         - if @designers.any?
           - @designers.each do |des|
             - if des.team_member.photo.present?
-              = cl_image_tag @project.member_project_associations.managers.first.team_member.photo,
+              = cl_image_tag des.team_member.photo,
               height: 50, width: 50, crop: :fill, default_image: 'avatar.png'
             - else
               = image_tag 'avatar.png', style: 'width:50px; height:50px;'
@@ -131,7 +131,7 @@
         - if @businessers.any?
           - @businessers.each do |bus|
             - if bus.team_member.photo.present?
-              = cl_image_tag @project.member_project_associations.managers.first.team_member.photo,
+              = cl_image_tag bus.team_member.photo,
               height: 50, width: 50, crop: :fill, default_image: 'avatar.png'
             - else
               = image_tag 'avatar.png', style: 'width:50px; height:50px;'
