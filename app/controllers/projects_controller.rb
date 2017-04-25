@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
   def show
     @member_associations = MemberProjectAssociation.where(project_id: @project.id)
     @developers = @member_associations.select {|assoc| assoc.team_member.skill.skill_category == 'web development' unless assoc.project_manager?}
-    @designers = @member_associations.select {|assoc| assoc.team_member.skill.skill_category == 'creative development' or 'design' unless assoc.project_manager?}
+    @designers = @member_associations.select {|assoc| assoc.team_member.skill.skill_category == 'design' unless assoc.project_manager?}
     @businessers = @member_associations.select {|assoc| assoc.team_member.skill.skill_category == 'business development' unless assoc.project_manager?}
   end
 
@@ -33,6 +33,7 @@ class ProjectsController < ApplicationController
     @designer_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'design' }
     @business_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'business development' }
     @developer_matches = @remaining_matches.select { |match| match.team_member.skill.skill_category == 'web development' }
+    raise
   end
 
 end

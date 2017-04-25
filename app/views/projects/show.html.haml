@@ -1,24 +1,24 @@
--# Add other project characteristics
 .container
+  %h4= link_to "All Projects", projects_path
   %h1 Project Details
   %h2= "Title: #{@project.name}"
   %h3= "Client: #{@project.client}"
   %h3= "Deadline: #{@project.deadline}"
 
-  %h2 Project Specs
-  %h3=
-  %h3=
-  %h3=
-  %h3=
+  %h4 Project Specs
+  %h5= "Project Size: #{@project.project_requirement.size}"
+  %h5= "Kind: #{@project.project_requirement.variety}"
+  %h5= "Client Type: #{@project.project_requirement.client_type}"
 
   - if @project.member_project_associations.empty? and @project.matches.empty?
     %p= link_to "Get Matches", project_create_matches_url(@project), method: :post
 
   - elsif @project.member_project_associations.empty? and @project.matches.any?
-    %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
+    -# %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
     %h4 Here are your matches:
     - @matches.each do |match|
       %h5= match.team_member.name
+      %h6= match.team_member.skill.skill_category
       %p= link_to "See profile", team_member_path(match.team_member)
       %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
         member_id: match.team_member.id, project_id: @project.id }, method: :post
@@ -27,19 +27,21 @@
 
   - elsif @project.member_project_associations.any?
     .container
-    %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
+    -# %p= link_to "Recalculate Matches", project_create_matches_url(@project), method: :post
     %h3 Here's the team so far:
     .row
       .col-sm-4.col-sm-offset-4
         %h4 Project Manager
         - if @project.member_project_associations.managers.any?
-          - if @project.member_project_associations.managers.first.team_member.photo.present?
-            = cl_image_tag @project.member_project_associations.managers.first.team_member.photo,
+          - project_manager = @project.member_project_associations.managers.first
+          - if project_manager.team_member.photo.present?
+            = cl_image_tag project_manager.team_member.photo,
             height: 50, width: 50, crop: :fill, default_image: 'avatar.png'
           - else
             = image_tag 'avatar.png', style: 'width:50px; height:50px;'
-          %h5= @project.member_project_associations.managers.first.team_member.name
-          %h6= @project.member_project_associations.managers.first.team_member.position
+          %h5= project_manager.team_member.name
+          %h6= project_manager.team_member.position
+          %p= link_to "See profile", team_member_path(project_manager.team_member)
         - else
           %h5 No project manager selected yet
           %h6 Select one below
@@ -56,7 +58,7 @@
             %h5= dev.team_member.name
             %h6= dev.team_member.position
             %p= link_to "See profile", team_member_path(dev.team_member)
-          %h5 More
+          %h5 More Matches
           - if @developer_matches.any?
             - @developer_matches.each do |match|
               %h5= match.team_member.name
@@ -70,14 +72,17 @@
             %h6 No More matches
         - else
           %h5 Select a developer
-          - @developer_matches.each do |match|
-            %h5= match.team_member.name
-            %p= link_to "See profile", team_member_path(match.team_member)
-            - if @project.member_project_associations.managers.empty?
-              %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+          - if @developer_matches.any?
+            - @developer_matches.each do |match|
+              %h5= match.team_member.name
+              %p= link_to "See profile", team_member_path(match.team_member)
+              - if @project.member_project_associations.managers.empty?
+                %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+                  member_id: match.team_member.id, project_id: @project.id }, method: :post
+              %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
                 member_id: match.team_member.id, project_id: @project.id }, method: :post
-            %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
-              member_id: match.team_member.id, project_id: @project.id }, method: :post
+          - else
+            %h6 No More matches
 
       .col-sm-4
         %h4 Design Development
@@ -91,9 +96,9 @@
             %h5= des.team_member.name
             %h6= des.team_member.position
             %p= link_to "See profile", team_member_path(des.team_member)
-          %h5 More
-          - if @creative_matches.any?
-            - @creative_matches.each do |match|
+          %h5 More Matches
+          - if @designer_matches.any?
+            - @designer_matches.each do |match|
               %h5= match.team_member.name
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
@@ -103,16 +108,20 @@
                 member_id: match.team_member.id, project_id: @project.id }, method: :post
           - else
             %h6 No more matches
+
         - else
           %h5 Select a Designer
-          - @creative_matches.each do |match|
-            %h5= match.team_member.name
-            %p= link_to "See profile", team_member_path(match.team_member)
-            - if @project.member_project_associations.managers.empty?
-              %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+          - if @designer_matches.any?
+            - @designer_matches.each do |match|
+              %h5= match.team_member.name
+              %p= link_to "See profile", team_member_path(match.team_member)
+              - if @project.member_project_associations.managers.empty?
+                %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+                  member_id: match.team_member.id, project_id: @project.id }, method: :post
+              %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
                 member_id: match.team_member.id, project_id: @project.id }, method: :post
-            %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
-              member_id: match.team_member.id, project_id: @project.id }, method: :post
+          - else
+            %h6 No more matches
 
       .col-sm-4
         %h4 Business Development
@@ -126,7 +135,7 @@
             %h5= bus.team_member.name
             %h6= bus.team_member.position
             %p= link_to "See profile", team_member_path(bus.team_member)
-          %h5 More
+          %h5 More Matches
           - if @business_matches.any?
             - @business_matches.each do |match|
               %h5= match.team_member.name
@@ -140,15 +149,17 @@
             %h6 No more business matches
         - else
           %h5 Select a Business Person
-          - @business_matches.each do |match|
-            %h5= match.team_member.name
-            %p= link_to "See profile", team_member_path(match.team_member)
-            - if @project.member_project_associations.managers.empty?
-              %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+          - if @business_matches.any?
+            - @business_matches.each do |match|
+              %h5= match.team_member.name
+              %p= link_to "See profile", team_member_path(match.team_member)
+              - if @project.member_project_associations.managers.empty?
+                %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
+                  member_id: match.team_member.id, project_id: @project.id }, method: :post
+              %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
                 member_id: match.team_member.id, project_id: @project.id }, method: :post
-            %p= link_to "Add as team member", {controller: "member_project_associations", action: "assign_member",
-              member_id: match.team_member.id, project_id: @project.id }, method: :post
-
+          - else
+            %h6 No more business matches
   .row
     .col-sm-6.col-sm-offset-4
       %h4 All Matches
