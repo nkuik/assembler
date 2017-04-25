@@ -62,6 +62,7 @@
           - if @developer_matches.any?
             - @developer_matches.each do |match|
               %h5= match.team_member.name
+              %h6= dev.team_member.position
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
@@ -100,6 +101,7 @@
           - if @designer_matches.any?
             - @designer_matches.each do |match|
               %h5= match.team_member.name
+              %h6= des.team_member.position
               %p= link_to "See profile", team_member_path(match.team_member)
               - if @project.member_project_associations.managers.empty?
                 %p= link_to "Add as project manager", {controller: "member_project_associations", action: "assign_manager",
