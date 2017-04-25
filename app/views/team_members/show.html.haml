@@ -1,7 +1,10 @@
 .container
   .row
     .col-sm-6.col-sm-offset-3
-      = cl_image_tag @member.photo, height: 300, width: 400, crop: :fill
+      - if @member.photo.present?
+        = cl_image_tag(@member.photo, height: 300, width: 300, crop: :fill, default_image: 'avatar.png')
+      - else
+        = image_tag 'avatar.png', style: 'width:300px; height:300px;'
       %h1= @member.name
       %h3= "Job Title: #{@member.position}"
       - if @member.skill.nil?
