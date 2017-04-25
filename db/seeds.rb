@@ -23,7 +23,8 @@ end
 
 25.times do
   member = TeamMember.create!({name: Faker::Name.name,
-                               position: ["Dev", "Designer", "Creative", "Business Person" ].sample
+                               position: ["Dev", "Designer", "Creative", "Business Person" ].sample,
+                               photo: Faker::Avatar.image
                              })
   Skill.create({team_member: member,
                 years_experience: rand(4),

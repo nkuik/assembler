@@ -13,10 +13,8 @@
         %h6= "Education: #{@member.skill.education}"
         %h6= "Type: #{@member.skill.education_type}"
         %h4 Skills
-        %h6 Categories
-        %ul
-        - @member.skill.skill_categories.each do |cat|
-          %li= cat
+        %h6 Category
+        %h7= @member.skill.skill_category
         %h6 Specific Skills
         %ul
         - @member.skill.skills.each do |cat|

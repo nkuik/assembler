@@ -1,0 +1,3 @@
+class MemberProjectAssociationsController < ApplicationController
+  
+end

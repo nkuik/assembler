@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20170423122615) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.integer  "score"
+    t.integer  "score",          default: 0
     t.integer  "team_member_id"
     t.integer  "project_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.index ["project_id"], name: "index_matches_on_project_id", using: :btree
     t.index ["team_member_id"], name: "index_matches_on_team_member_id", using: :btree
   end
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 20170423122615) do
   create_table "team_members", force: :cascade do |t|
     t.string   "name"
     t.string   "position"
-    t.datetime "created_at",                                                                             null: false
-    t.datetime "updated_at",                                                                             null: false
-    t.string   "photo",      default: "https://robohash.org/culpavoluptateut.png?size=300x300&set=set1"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "photo"
   end
 
 end
