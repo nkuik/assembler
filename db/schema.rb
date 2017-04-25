@@ -34,9 +34,9 @@ ActiveRecord::Schema.define(version: 20170423122615) do
   create_table "member_project_associations", force: :cascade do |t|
     t.integer  "team_member_id"
     t.integer  "project_id"
-    t.boolean  "project_manager"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean  "project_manager", default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.index ["project_id"], name: "index_member_project_associations_on_project_id", using: :btree
     t.index ["team_member_id"], name: "index_member_project_associations_on_team_member_id", using: :btree
   end

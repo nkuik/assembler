@@ -1,6 +1,7 @@
 class TeamMember < ApplicationRecord
   has_one :skill
   has_many :matches
+  has_many :member_project_associations
   # belongs_to :project_team
 
   mount_uploader :photo, PhotoUploader

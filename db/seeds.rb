@@ -21,20 +21,21 @@ def choose_skill(title)
   end
 end
 
+
 25.times do
+
   member = TeamMember.create!({name: Faker::Name.name,
                                position: ["Dev", "Designer", "Creative", "Business Person" ].sample,
-                               photo: Faker::Avatar.image
                              })
   Skill.create({team_member: member,
                 years_experience: rand(4),
                 education: Faker::University.name,
                 education_type: ["traditional", "non-traditional"].sample,
                 skill_category: choose_skill(member.position),
-                skills: member.possible_skills.sample,
-                techs: member.possible_techs.sample,
-                tech_categories: member.possible_tech_categories,
-                characteristics: Characteristic.new.options.sample
+                skills: ["#{member.possible_skills.sample}"],
+                techs: ["#{member.possible_techs.sample}"],
+                tech_categories: ["#{member.possible_tech_categories.sample}"],
+                characteristics: ["#{Characteristic.new.options.sample}"]
               })
 end
 

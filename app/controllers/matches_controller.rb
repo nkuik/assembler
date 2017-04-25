@@ -44,9 +44,9 @@ class MatchesController < ApplicationController
   end
 
   def recalculate_match_score(member)
-    match = member.matches.where(project_id: @project_id).first
+    match = member.matches.select { |match| match.project_id == @project.id }.first
     match.score = 0
-    account_project_needs(member. match)
+    account_project_needs(member, match)
     account_project_status(member, match)
     account_experience(member, match)
     account_education(member, match)
@@ -62,14 +62,14 @@ class MatchesController < ApplicationController
 
   def account_project_status(member, match)
     if @project.down_to_wire and member.skill.years_experience > 1
-      match.score += 2
+      match.score += 3
     end
     match
   end
 
   def account_experience(member, match)
     if @project.project_requirement.size.include?("medium") or @project.project_requirement.size.include?("large")
-      match.score += 2 if member.skill.years_experience >= 2
+      match.score += 2 if member.skill.years_experience >= 1
     end
     match
   end
