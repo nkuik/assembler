@@ -1,0 +1,14 @@
+.container
+  .row
+    .col-sm-6.col-sm-offset-3
+      %h1 Add a team member
+      .fieldset
+        = simple_form_for @member do |f|
+          = f.input :name
+          = f.input :position
+          = f.input :photo
+          = f.input :photo_cache, as: :hidden
+
+          %p
+            = f.button :submit
+            = link_to 'Cancel', :back

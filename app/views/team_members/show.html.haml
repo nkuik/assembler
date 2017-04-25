@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-sm-6.col-sm-offset-3
+      = cl_image_tag @member.photo, height: 300, width: 400, crop: :fill
+      %h1= @member.name
+      %h3= "Job Title: #{@member.position}"
+      - if @member.skill.nil?
+        = link_to "Add Skills", new_team_member_skill_path(@member)
+      - else
+        %h4 Experience
+        %h6= "Years of Signifly experience: #{@member.skill.years_experience}"
+        %h4 Education
+        %h6= "Education: #{@member.skill.education}"
+        %h6= "Type: #{@member.skill.education_type}"
+        %h4 Skills
+        %h6 Categories
+        %ul
+        - @member.skill.skill_categories.each do |cat|
+          %li= cat
+        %h6 Specific Skills
+        %ul
+        - @member.skill.skills.each do |cat|
+          %li= cat
+        %h4 Software
+        %h6 Categories
+        %ul
+        - @member.skill.tech_categories.each do |cat|
+          %li= cat
+        %h6 Specific Software
+        %ul
+        - @member.skill.techs.each do |cat|
+          %li= cat
+        %h6 Characteristics
+        - @member.skill.characteristics.each do |cat|
+          %li= cat
+
+      %h6= link_to "See Projects", projects_path

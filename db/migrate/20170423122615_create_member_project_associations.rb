@@ -3,7 +3,8 @@ class CreateMemberProjectAssociations < ActiveRecord::Migration[5.0]
     create_table :member_project_associations do |t|
       t.references :team_member
       t.references :project
-      
+      t.boolean :project_manager
+
       t.timestamps
     end
   end
